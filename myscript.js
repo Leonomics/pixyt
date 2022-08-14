@@ -1,10 +1,15 @@
 const resetButton = document.getElementById('reset_button');
-const gridContainer = document.querySelector('.grid_container');
+const gridContainer = document.getElementById('grid_container');
 resetButton.addEventListener('click', makeGrid);
+let color;
+let selectedColor = document.getElementsByClassName('dot');
+for (var i = 0 ; i < selectedColor.length; i++) {
+    selectedColor[i].addEventListener('click' , getSelectedColor , false ) ; 
+ }
+//const colorSelectorWrapper = document.querySelector('.color_selector_wrapper');
 
-
-
-function makeGrid(selectedWidth, selectedHeight ){
+/*crea la griglia*/
+function makeGrid(){
 
     const width = parseInt(getSelectedWidth());
     const height = parseInt(getSelectedHeight());
@@ -12,6 +17,7 @@ function makeGrid(selectedWidth, selectedHeight ){
 
     gridContainer.innerHTML = "";
 
+    gridContainer.style.gridTemplateColumns = `repeat(${width}, 1fr)`;
     for(let i = 0; i<numeroCelle; i++){
         const cella = getSquareElement();
         //cella.innerHTML = i + 1;
@@ -22,7 +28,7 @@ function makeGrid(selectedWidth, selectedHeight ){
 function getSquareElement(){
     const square = document.createElement('div');
     square.classList.add('square');
-    square.addEventListener('click', clickHandler)
+    square.addEventListener('mousedown', clickHandler)
 
     return square;
 }
@@ -33,6 +39,11 @@ function getSelectedWidth() {
     return selectedWidth;
 }
 
+function changeColor(element){
+    draw_color = element.style.background;
+}
+
+
 function getSelectedHeight() {    
     let selectedHeight = document.getElementById("grid_height").value;
     console.log(selectedHeight);
@@ -41,7 +52,22 @@ function getSelectedHeight() {
 
 function clickHandler(){
     const square = this;
-    square.classList.toggle('clicked');
-    square.removeEventListener('click', clickHandler);
-    console.log("cella numero: " + parseInt(square.innerHTML))
+    //square.removeEventListener('click', clickHandler);
+    //console.log("cella numero: " + parseInt(square.innerHTML))
+    if(color!=crossed){
+        square.removeAttribute("class");
+        square.setAttribute("class", "square");
+        square.classList.add(color);
+    }else{
+        square.removeAttribute("class");
+        square.setAttribute("class", "square");
+    }
 }
+
+
+function getSelectedColor(){
+    color = this.id
+    console.log(color);
+    return color;
+}
+

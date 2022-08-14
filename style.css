@@ -41,16 +41,34 @@ main{
     cursor: pointer;
   }
 
-  .grid_container{
-    grid-template-columns: repeat(10, 1fr);
+  .dot:hover{
+    border: 3px solid greenyellow;
+  }
+
+  #white:hover{
+    border: 3px solid greenyellow;
+  }
+
+  #crossed{
+    background: linear-gradient(to top right,
+    rgba(255,0,0,0) 0%,
+    rgba(255,0,0,0) calc(50% - 0.8px),
+    rgba(255,0,0,1) 50%,
+    rgba(255,0,0,0) calc(50% + 0.8px),
+    rgba(255,0,0,0) 100%);
+    border: 1px solid red;
+  }
+
+  #grid_container{
+    /*grid-template-columns: repeat(10, 1fr);*/
     display: grid;
-    aspect-ratio: 1/1;
-    max-width: 800px;
+    max-width: 1912px;
     flex-basis: 100%;
-    row-gap: 0px;
+    gap: 0px;
     margin: 0 auto;
     background-color: white;
   }
+
 
   .square{
     aspect-ratio: 1/1;
@@ -58,4 +76,30 @@ main{
     justify-content: center;
     align-items: center;
     border:1px solid black;
+  }
+
+
+
+  /*color selector's colors*/
+  #black{
+    background-color: black;
+  }
+
+  #white{
+    background-color: white;
+    border:1px solid lightgrey;
+  }
+
+  #pink{
+    background-color: pink;
+  }
+
+
+  /*grid colors*/ 
+  .black{
+    background-color: black;
+  }
+
+  .pink{
+    background-color: pink;
   }
